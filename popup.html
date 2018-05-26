@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" dir="rtl" lang="he-IL">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /> 
+<meta name="language" content="he" /> 
+<script type="text/javascript" src="jquery-2.0.2.js"></script>
+<script type="text/javascript" src="popup.js"></script>
+</head>
+<body>
+
+<style>
+.buttons {
+	cursor:pointer;
+	padding:6px;
+	border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #DCDCDC;
+	background-color:aliceblue;
+	font-size: 110%;
+	margin: 5px;
+
+	
+   opacity: 0.7;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+.wikipedia{
+	display: none;
+}
+.michlol{
+	display: none;
+}
+.mAndW{
+	display: none;
+}
+.buttons:hover {
+      opacity: 1;
+}
+
+</style>
+<div style="width:300px">
+<p class="wikipedia">בקרה והכנה לייבוא<p/>
+<p class="michlol">בקרה<p/>
+<div class="buttons mAndW" id="chekWords">בדוק מילים חשודות</div>
+<p class="michlol">הכנה לייבוא<p/>
+<div class="buttons michlol" id="chechLinksInMichlol">בדוק אלו מהערכים "האדומים" קיימים בוויקיפדיה</div>
+<div class="buttons wikipedia" id="chechLinksInWikipedia">בדוק אלו ערכים עדיין לא קיימים במכלול</div>
+<div class="buttons michlol" id="redLinks">רשימת הקישורים האדומים בדף</div>
+
+<p>ייבוא</p>
+<div class="buttons wikipedia" id="editInMichlol">צור/ערוך ערך זה במכלול</div>
+<div class="buttons wikipedia" id="importToMichlol">ייבוא ערך <span style="color: red;"><sup>(נדרשת הרשאת מייבא)</sup></span> </div>
+<div class="buttons michlol" id="importToMichlolInMihlol">ייבוא ערך <span style="color: red;"><sup>(נדרשת הרשאת מייבא)</sup></span> </div>
+<div class="buttons michlol" id="multiImport">ייבוא כמותי <span style="color: red;"><sup>(נדרשת הרשאת מייבא)</sup></span> </div>
+
+<div class="buttons wikipedia" id="importThisToMichlol">ייבא ערך זה למכלול <span style="color: red;"><sup>(נדרשת הרשאת מייבא)</sup></span> </div>
+<!-- 
+<p>הגדרות</p>
+<div class="buttons wikipedia" id="toolbar">הצג סרגל</div>
+</div>
+<div class="buttons mAndW" id="offEx">השבת תוסף</div>
+</div>
+  -->
+
+</body>
+</html>

@@ -1,10 +1,12 @@
 $(function() {
-
+	//בדיקה אם הערך הנוכחי קיים במכלול
     var pageTitle = $("#firstHeading").text().trim();
-
+	pageTitle=pageTitle.replace ("[","").replace ("]","").replace ("עריכה","").replace ("עריכת קוד מקור","").replace (" | ","");
+	
     chrome.extension.sendRequest({func:"ifHaveHamichlol",title: pageTitle }, function(response) {
         if(response.have){
-            
+            $("#iconMichlol").attr("href","http://www.hamichlol.org.il/"+encodeURIComponent(pageTitle))
+            $("#iconMichlol").attr("title", "צפה בערך זה במכלול")
         }else{
             
             function editInHamichlol(){
@@ -12,28 +14,22 @@ $(function() {
             }
             
             $("#firstHeading").css('color','red');
-            
-            $("<button>").text("ערוך בהמכלול").appendTo($("#bodyContent")).on('click',editInHamichlol);
+            $("#importThisPageBtn").css('color','#ff5555');
+            $("<span>").text("צור/ערוך ערך זה במכלול").attr("class", "buttons").appendTo($("#p-michlol")).on('click',editInHamichlol);
             
         }
     });
     
-    
-    $("#mw-content-text a").each(function(){
-        var $this = $(this);
-        var href = $this.attr('href');
-        
-        if(!href || !href.startsWith("/wiki/")) return;
-        
-        var title = $this.attr('title');
-        if(!title) return;
-        
-        chrome.extension.sendRequest({func:"ifHaveHamichlol",title: title }, function(response) {
-            if(!response.have){
-                $this.after($("<span>").text(" [M] ").css('color','red'))
-            }
-        });
-        
-    });
+
     
 }); 
+
+
+//החזרת כותרת הדף
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	if (request.greeting == "pageTitleOfWikipedia"){
+	var pageTitle = $("#firstHeading").text().trim();
+	pageTitle=pageTitle.replace ("[","").replace ("]","").replace ("עריכה","").replace ("עריכת קוד מקור","").replace (" | ","");
+	sendResponse({farewell: pageTitle});
+	};
+});
