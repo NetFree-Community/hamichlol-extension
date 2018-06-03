@@ -1,0 +1,21 @@
+
+.ex-michlol-link {
+    vertical-align: super;
+    color: #e01c1c;
+    font-size: 80%;
+}
+
+.ex-michlol-link-wiki{
+    vertical-align: super;
+    color: #1ce03d;
+    font-size: 80%;
+}
+
+.ex-michlol-button{
+    margin: 20px 10px;
+}
+
+
+.ex-michlol-button.done{
+    background-color: #a1dbab
+}

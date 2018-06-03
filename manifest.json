@@ -1,11 +1,10 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
+  "update_url": "https://clients2.google.com/service/update2/crx",
   "manifest_version": 2,
   "name": "כלי עזר לעריכה במכלול",
-  "description":"כלי עזר לעריכה במכלול וייבוא ערכים מוויקיפדיה.",
-  "version": "1.1.8",
-   "browser_action": {
+  "description": "כלי עזר לעריכה במכלול וייבוא ערכים מוויקיפדיה.",
+  "version": "2.0.0",
+  "browser_action": {
     "default_popup": "popup.html"
   },
   "permissions": [
@@ -13,25 +12,44 @@
     "https://he.wikipedia.org/",
     "http://www.hamichlol.org.il/",
     "tabs",
-	"storage"
+    "storage"
   ],
-
- "background": { 
-    "scripts": ["jquery-2.0.2.js" ,"background.js" ]
+  "background": {
+    "scripts": [
+      "jquery-2.0.2.js",
+      "background.js"
+    ]
   },
   "content_scripts": [
-  { 
-    "matches": [ "https://he.wikipedia.org/*"],
-    "css": ["import.css"],
-    "js": ["jquery-2.0.2.js", "sargel.js" , "wikipedia.js", "chekLinksInWikipedia.js", "chekwords.js", "import.js"]
+    {
+      "matches": [
+        "https://he.wikipedia.org/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "jquery-2.0.2.js",
+        "wikipedia.js"
+      ]
     },
-    {  
-    "matches": ["http://www.hamichlol.org.il/*" ] , 
-    "css": ["import.css"],
-	"js": [  "jquery-2.0.2.js" ,"hamichlol.js", "chekwords.js", "redLinks.js", "import.js", "multiImport.js" ] 
+    {
+      "matches": [
+        "http://www.hamichlol.org.il/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "jquery-2.0.2.js",
+        "hamichlol.js"
+      ]
     }
   ],
-  "icons": { "128": "icon.png" },
-  "web_accessible_resources": ["icon.png"]
-
+  "icons": {
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    "icon.png"
+  ]
 }
