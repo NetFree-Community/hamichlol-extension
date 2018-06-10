@@ -1,5 +1,34 @@
 
 
+
+    var listClassification = [
+        {
+            name: "כפירה",
+            list: ["כפירה ברוחניות", "כפירה בתורה", "כפירה בעיקר", "ביקורת המקרא", "מעשה בראשית", "פילוסופיה"]
+        },
+        {
+            name: "קדושת התורה",
+            list: ["רדוקצית הדת", "להבדיל", "סמכות התורה", "בלעדיות האורתודוקסיה", "כבוד תח", "סמכות ההלכה", "ציונות"]
+        },
+        {
+            name: "דתות",
+            list: ["נצרות", "איסלאם", "דתות אחרות", "מיתולוגיה"]
+        },
+        {
+            name: "תרבות",
+            list: ["תרבות ובידור","ספורט", "אלימות"]
+        },
+        {
+           name: "צניעות",
+           list: ["צניעות", "צניעות/נוער", "תועבה/גאווה"]
+        },
+        {
+            name: "תיארוך",
+            list: ["ראשית היקום", "ראשית העולם", "פרהיסטוריה", "שחר ההיסטוריה", "לפנהס"]
+        },
+    ];
+
+
 var random = Math.random() + "";
 
 function CheckIfLinksfromHanichlol() {
@@ -29,6 +58,42 @@ function CheckIfLinksfromHanichlol() {
     });
 }
 
+function selectClass(item){
+
+    return new Promise(function(resolve, reject) {
+        var $div = $("<div>");
+        
+        $div.addClass("ex-main-select-class");
+
+        var $close = $("<span>");
+        $close.addClass("ex-close").text("X").appendTo($div);
+
+        $close.on("click",function(){
+            $div.remove();
+            reject();
+        });
+
+        var $list = $("<div>");
+
+        $list.addClass("ex-list-class").appendTo($div);
+
+
+        listClassification.forEach(function(mclass){
+            mclass.list.forEach(function(sub){
+                var $item = $("<span>");
+                $item.addClass("ex-item-class").text(mclass.name + " | " + sub).appendTo($list);
+
+                $item.on('click',function(){
+                    item.args.text = "{{" + ["דף לטיפול","סיווג=" + mclass.name , "סיווג משנה=" + sub].join("|") + "}}"
+                    $div.remove();
+                    resolve();
+                });
+            });
+        });
+
+        $div.appendTo("body");
+    }); 
+}
 
 $(function () {
 
@@ -62,12 +127,20 @@ $(function () {
                 },
                 {
                     text: "דורש טיפול",
-                    args: {  add: " {{דף לטיפול|תרבות|ספורט}}" , save: true },
-                    select: true
+                    args: {  
+                        text: " {{דף לטיפול}}" , 
+                        save: true ,
+                        summary: "דף טיפול"
+                    },
+                    select: selectClass
                 },
                 {
                     text: "לא מתאים",
-                    args: {  text: "{{לא מתאים}}" , save: true }
+                    args: {  
+                        text: "{{לא מתאים}}" ,
+                        save: true ,
+                        summary: "לא מתאים"
+                    }
                 }
             ];
 
@@ -79,14 +152,13 @@ $(function () {
                     .addClass('ex-michlol-button')
                     .appendTo($bodyContent)
                     .on('click', () => {
-                        if(item.select){
 
-                            return;
-                        }
-
-                        improtToHamichlol(item.args).then(()=>{
+                        (item.select ? item.select(item) : Promise.resolve()).then(() => {
+                            return improtToHamichlol(item.args);
+                        }).then(() => {
                             $but.addClass('done')
                         });
+
                     });
 
             });

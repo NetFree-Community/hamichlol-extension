@@ -19,3 +19,38 @@
 .ex-michlol-button.done{
     background-color: #a1dbab
 }
+
+.ex-main-select-class{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+}
+
+.ex-main-select-class .ex-close{
+    cursor: pointer;
+    margin: 15px;
+    display: inline-block;
+}
+
+.ex-main-select-class .ex-list-class{
+    padding: 40px;
+}
+
+.ex-main-select-class .ex-item-class{
+    margin: 15px;
+    display: inline-block;
+    background: #888888;
+    padding: 1px 25px;
+    border-radius: 6px;
+    color: #ffff;
+    cursor: pointer;
+}
+
+.ex-main-select-class .ex-item-class:hover{
+    background: #d4d4d4;
+}
+
+
