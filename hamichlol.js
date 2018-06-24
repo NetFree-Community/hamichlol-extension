@@ -6,6 +6,18 @@ chrome.extension.sendRequest({ func: "getOptions" }, function (response) {
 	}
 });
 
+
+var pageTitle = $("#firstHeading").text().trim();
+var $but = $("<button>");
+
+$but
+	.text("השווה מול ויקיפדיה")
+	.addClass('ex-michlol-button')
+	.appendTo($("#firstHeading"))
+	.on('click', () => {
+		chrome.extension.sendRequest({ func: "compareWikipedia", title: pageTitle }, function (response) { });
+	});
+
 function CheckIfLinksfromWikipedia() {
 
 	$("#mw-content-text a.new").each(function () {
