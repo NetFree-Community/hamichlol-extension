@@ -42,7 +42,7 @@ function getWikipediaText(title) {
 function getWikipediaTextAndInfo(title) {
 	return fetch('https://he.wikipedia.org/w/api.php?action=parse&page=' + encodeURIComponent(title) + '&format=json&prop=wikitext|revid').then(response => {
 		if (response.status !== 200)
-			return Promise.reject(new Error(`status code: ${response.status}`));
+			return Promise.reject(new Error(`Status code: ${response.status}`));
 
 		return response.text();
 	}).then(text => {
@@ -64,7 +64,9 @@ function getWikipediaTextAndInfo(title) {
 
 functions['improtToHamichlol'] = function (request, sender, sendResponse) {
 
-	getWikipediaTextAndInfo(request.title).then(function (pageInfo) {
+	getWikipediaTextAndInfo(request.title)
+	.then(i => i, err => request.text ? {} : Promise.reject(err)) // skip error on block page
+	.then(pageInfo => {
 
 		var $form = $("<form>");
 
@@ -75,7 +77,6 @@ functions['improtToHamichlol'] = function (request, sender, sendResponse) {
 			.attr("action", actionUrl)
 			.attr("enctype", "multipart/form-data")
 			.attr("method", "post");
-
 
 		if(pageInfo.revid && pageInfo.title){
 			let rating = [
@@ -90,7 +91,7 @@ functions['improtToHamichlol'] = function (request, sender, sendResponse) {
 			request.add = (request.add ? "\n" : "") + "{{" + rating.join("|") +  "}}";
 		}
 
-		var add = (request.add && "\n\n" + request.add) || "";
+		var add = (request.add && "\n" + request.add) || "";
 		var summary = request.summary || "ייבוא מוויקיפדיה העברית, ראה רשימת התורמים";
 		var wikitext = (request.text || pageInfo.wikitext) + add;
 
