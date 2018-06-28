@@ -55,6 +55,7 @@ var badwordList = [];
 
 var random = Math.random() + "";
 
+var options = false;
 
 
 var listButton = [
@@ -134,22 +135,24 @@ function CheckIfLinksfromHanichlol() {
     });
 
     Promise.all(pCheckList).then(()=>{
-        listButton.filter(i => i.lot).forEach(item => {
-            var $but = $("<button>");    
-            $but
-                .text(item.text + " (מרובה)")
-                .addClass('ex-michlol-button')
-                .appendTo($bodyContent)
-                .on('click', () => {
-                    (item.select ? item.select(item) : Promise.resolve())
-                    .then(selectPages).then(list => {
-                        var listPages = list.split("\n").map(s => s.trim()).filter(s => !!s);
-                        return Promise.all(listPages.map(p => improtToHamichlol(Object.assign({ title: p },item.args)))) ;
-                    }).then(() => {
-                        $but.addClass('done')
-                    }); 
-                });
-        });
+        if(options.showLotImport){
+            listButton.filter(i => i.lot).forEach(item => {
+                var $but = $("<button>");    
+                $but
+                    .text(item.text + " (מרובה)")
+                    .addClass('ex-michlol-button')
+                    .appendTo($bodyContent)
+                    .on('click', () => {
+                        (item.select ? item.select(item) : Promise.resolve())
+                        .then(selectPages).then(list => {
+                            var listPages = list.split("\n").map(s => s.trim()).filter(s => !!s);
+                            return Promise.all(listPages.map(p => improtToHamichlol(Object.assign({ title: p },item.args)))) ;
+                        }).then(() => {
+                            $but.addClass('done')
+                        }); 
+                    });
+            });
+        }
 
         var nohaveList = Object.keys(listNotHave);
 
@@ -363,6 +366,8 @@ $(function () {
     });
 
     chrome.extension.sendRequest({ func: "getOptions" }, function (response) {
+        options = response.options;
+
         if (response.options.markNotHavePageInHamichlol) {
             CheckIfLinksfromHanichlol();
         }

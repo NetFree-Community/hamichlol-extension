@@ -9,11 +9,16 @@
 		body{
 			width: 200px;
 		}
+		.hidden-set{
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
-
+	<h2 id="settings-h2">
+		הגדרות
+	</h2>
 	<div>
 		<input type="checkbox" option-name="markNotHavePageInHamichlol">
 		<label>
@@ -34,7 +39,19 @@
 			נסה לסמן מילים שליליות
 		</label>
 	</div>
-	
+
+	<div class="hidden-set">
+		<input type="checkbox" option-name="showLotImport">
+		<label>
+			הצג כפתורי יבוא המוני
+		</label>
+	</div>	
+	<div class="hidden-set">
+		<input type="checkbox" option-name="showWikipediaCompare">
+		<label>
+			הצג כפתור השוואה מויקיפדיה
+		</label>
+	</div>
 </body>
 
 </html>

@@ -37,5 +37,13 @@ $( document ).ready(function() {
 		options[key] = val;
 		localStorage.setItem("options",JSON.stringify(options));
 	});
+
+
+	var countClick = 0;
+	$("#settings-h2").on('click',function(){
+		countClick++;
+		if(countClick > 5)
+			$(".hidden-set").show();
+	});
 });
 
