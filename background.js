@@ -88,7 +88,7 @@ functions['improtToHamichlol'] = function (request, sender, sendResponse) {
 			if(request.rating)
 				rating.push("דרגה=" + request.rating);
 
-			request.add = (request.add ? "\n" : "") + "{{" + rating.join("|") +  "}}";
+			request.add = (request.add ? request.add + "\n" : "") + "{{" + rating.join("|") +  "}}";
 		}
 
 		var add = (request.add && "\n" + request.add) || "";
