@@ -179,8 +179,21 @@ functions['compareWikipedia'] = function (request, sender, sendResponse) {
 			.attr("enctype", "multipart/form-data")
 			.attr("method", "post"); 
 
+
+
+		var added = '';
+		
+		if(pageInfo.revid && pageInfo.title){
+			let rating = [
+				"מיון ויקיפדיה",
+				"דף=" + pageInfo.title,
+				"גרסה=" + pageInfo.revid,
+			]; 
+			added = "\n{{וח}}\n" + "{{" + rating.join("|") +  "}}";
+		}
+		
 		var params = [];
-		params.push(["wpTextbox1", pageInfo.wikitext]);
+		params.push(["wpTextbox1", pageInfo.wikitext + added]);
 		params.push(["wpSummary", "עידכון מויקיפדיה גירסה" + " " + pageInfo.revid ]);
 		params.push(["wpAntispam", ""]);
 
