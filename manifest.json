@@ -11,6 +11,7 @@
     "http://he.wikipedia.org/",
     "https://he.wikipedia.org/",
     "http://www.hamichlol.org.il/",
+    "https://www.hamichlol.org.il/",
     "tabs",
     "storage"
   ],
@@ -35,7 +36,8 @@
     },
     {
       "matches": [
-        "http://www.hamichlol.org.il/*"
+        "http://www.hamichlol.org.il/*",
+        "https://www.hamichlol.org.il/*"
       ],
       "css": [
         "content.css"

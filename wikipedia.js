@@ -328,7 +328,7 @@ $(function () {
         if (response.have) {
             var $a = $('<a>');
             $a
-                .attr("href",'http://www.hamichlol.org.il/' + encodeURIComponent(pageTitle))
+                .attr("href",'https://www.hamichlol.org.il/' + encodeURIComponent(pageTitle))
                 .attr("target","_blank")
 				.text("צפה במכלול")
 				.addClass("ex-michlol-link-to-michlol");

@@ -1,7 +1,7 @@
 ﻿
 
 function ifHaveHamichlol(title,random) {
-	var link = 'http://www.hamichlol.org.il/w/index.php?title=' + encodeURIComponent(title) + '&action=raw';
+	var link = 'https://www.hamichlol.org.il/w/index.php?title=' + encodeURIComponent(title) + '&action=raw';
 	if(random) link += "&r=" + random;
 	return fetch(link,{method: 'HEAD'}).then(function (response) {
 		return response.status == 200;
@@ -9,7 +9,7 @@ function ifHaveHamichlol(title,random) {
 }
 
 function ifHaveWikipedia(title,random) {
-	var link = 'http://he.wikipedia.org/w/index.php?title=' + encodeURIComponent(title) + '&action=raw';
+	var link = 'https://he.wikipedia.org/w/index.php?title=' + encodeURIComponent(title) + '&action=raw';
 	if(random) link += "&r=" + random;
 	return fetch(link,{method: 'HEAD'}).then(function (response) {
 		return response.status == 200;
@@ -31,7 +31,7 @@ functions['ifHaveWikipedia'] = function (request, sender, sendResponse) {
 };
 
 function getWikipediaText(title) {
-	return fetch('http://he.wikipedia.org/w/index.php?title=' + encodeURIComponent(title) + '&action=raw').then(function (response) {
+	return fetch('https://he.wikipedia.org/w/index.php?title=' + encodeURIComponent(title) + '&action=raw').then(function (response) {
 		if (response.status !== 200)
 			return Promise.reject(new Error(`status code: ${response.status}`));
 
@@ -70,7 +70,7 @@ functions['improtToHamichlol'] = function (request, sender, sendResponse) {
 
 		var $form = $("<form>");
 
-		var actionUrl = "http://www.hamichlol.org.il/w/index.php?title=" + encodeURIComponent(request.title) + "&action=submit";
+		var actionUrl = "https://www.hamichlol.org.il/w/index.php?title=" + encodeURIComponent(request.title) + "&action=submit";
 
 		$form
 			.attr("target", request.open ? "_blank" : "import-iframe")
@@ -171,7 +171,7 @@ functions['compareWikipedia'] = function (request, sender, sendResponse) {
 	getWikipediaTextAndInfo(request.title).then(function (pageInfo) {
 		var $form = $("<form>");
 
-		var actionUrl = "http://www.hamichlol.org.il/w/index.php?title=" + encodeURIComponent(request.title) + "&action=submit";
+		var actionUrl = "https://www.hamichlol.org.il/w/index.php?title=" + encodeURIComponent(request.title) + "&action=submit";
 
 		$form
 			.attr("target", request.open ? "_blank" : "import-iframe")
