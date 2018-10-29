@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "כלי עזר לעריכה במכלול",
   "description": "כלי עזר לעריכה במכלול וייבוא ערכים מוויקיפדיה.",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "browser_action": {
     "default_popup": "popup.html"
   },
