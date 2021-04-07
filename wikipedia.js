@@ -62,7 +62,7 @@ var listButton = [
     {
         text: "יבא ושכח",
         args: {  
-            add: "{{וח}}",
+            add: "{{קרד}}",
             save: true,
             rating: "נקי"
         }
@@ -70,7 +70,7 @@ var listButton = [
     {
         text: "יבא וסנן",
         args: {
-            add: "{{וח}}",
+            add: "{{קרד}}",
             open: true ,
             rating: "עבר סינון"
         }
